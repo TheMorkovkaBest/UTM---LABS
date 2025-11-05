@@ -93,7 +93,7 @@ int main() {
     int choise = show_menu();
     while (choise != 7) {
         switch (choise) {
-            case 1 : create_array(); break;
+            case 1 : if (array == NULL)create_array();else printf("массив уже создан\n"); break;
             case 2 : if (array != NULL) vvod_s_klaviaturi();else printf("массив не создан\n"); break;
             case 3 : if (array != NULL) vvod_randomno();else printf("массив не создан\n"); break;
             case 4 : if (array != NULL) sorting();else printf("массив не создан\n"); break;
