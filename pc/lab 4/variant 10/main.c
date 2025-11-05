@@ -83,10 +83,10 @@ void vivod_massivsa(int n , int m,int *array) {
     }
 }
 
-void cleaning(int *array) {
+int* cleaning(int *array) {
     printf("----чистка-----\n");
     free(array);
-    array = NULL;
+    return array = NULL;
 }
 
 int main() {
@@ -101,7 +101,7 @@ int main() {
             case 3 : if (array != NULL) vvod_randomno(n,m,array);else printf("массив не создан\n"); break;
             case 4 : if (array != NULL) sorting(n,m,array);else printf("массив не создан\n"); break;
             case 5 : if (array != NULL) vivod_massivsa(n,m,array);else printf("массив не создан\n"); break;
-            case 6 : if (array != NULL) cleaning(array);else printf("массив не создан\n"); break;
+            case 6 : if (array != NULL) array = cleaning(array);else printf("массив не создан\n"); break;
             default: break;
         }
         choise = show_menu();
