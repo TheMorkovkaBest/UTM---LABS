@@ -7,23 +7,22 @@ int m=3;
 
 int show_menu() {
     int choice;
-    printf("-----меню(без скидок)----------------------------------\n");
-    printf("1. Динамическое выделение памяти для двумерного массива\n");
-    printf("2. Ввод элементов массива с клавиатуры\n");
-    printf("3. Заполнение массива случайными числами\n");
-    printf("4. Отсортировать нечетные столбцы массива\n");
-    printf("   по убыванию с помощью метода «пузырька».\n");
-    printf("5. Вывод элементов массива на экран\n");
-    printf("6. Освобождение памяти, выделенной для массива \n");
-    printf("7. Окончание работы программы\n");
-    printf("--> ");
+    printf("-----меню(без скидок)----------------------------------\n"
+        "1. Динамическое выделение памяти для двумерного массива\n"
+        "2. Ввод элементов массива с клавиатуры\n"
+        "3. Заполнение массива случайными числами\n"
+        "4. Отсортировать нечетные столбцы массива\n"
+        "   по убыванию с помощью метода «пузырька».\n"
+        "5. Вывод элементов массива на экран\n"
+        "6. Освобождение памяти, выделенной для массива \n"
+        "7. Окончание работы программы\n" "--> ");
     scanf("%i",&choice);
     printf("-------------------------------------------------------\n");
     return choice;
 }
 
 void create_array() {
-    array = (int*)malloc(n*m*sizeof(int));
+    array = (int*)malloc((n*m)*sizeof(int));
     if (array == NULL) {
         exit(1);
     }
@@ -45,14 +44,14 @@ void vvod_s_klaviaturi() {
 }
 
 void vvod_randomno() {
-    printf("----ввод с rand()-----\n\n");
-    for(int i=0;i<n;i++) {
-        for(int j=0;j<m;j++) {
-            array[i*m+j] = rand()%100 - 50;
+        printf("----ввод с rand()-----\n\n");
+        for(int i=0;i<n*m;i++) {
+            array[i] = rand()%100 - 50;
+
         }
+        printf("-------успешно--------\n");
     }
-    printf("-------успешно--------\n");
-}
+
 
 void sorting() {
     int temp=0,f=1;
@@ -95,11 +94,11 @@ int main() {
     while (choise != 7) {
         switch (choise) {
             case 1 : create_array(); break;
-            case 2 : vvod_s_klaviaturi(); break;
-            case 3 : vvod_randomno(); break;
-            case 4 : sorting(); break;
-            case 5 : vivod_massivsa(); break;
-            case 6 : cleaning(); break;
+            case 2 : if (array != NULL) vvod_s_klaviaturi();else printf("массив не создан\n"); break;
+            case 3 : if (array != NULL) vvod_randomno();else printf("массив не создан\n"); break;
+            case 4 : if (array != NULL) sorting();else printf("массив не создан\n"); break;
+            case 5 : if (array != NULL) vivod_massivsa();else printf("массив не создан\n"); break;
+            case 6 : if (array != NULL) cleaning();else printf("массив не создан\n"); break;
             default: break;
         }
         choise = show_menu();
