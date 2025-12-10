@@ -1,44 +1,21 @@
 #include <stdio.h>
 #include "gos.h"
-#include <stdlib.h>
-#include <string.h>
-// динамическиски выделить
+
+
 int main(void) {
-    int n = 1;//кол/во стран
-    gos* gosudarstvo = create_array(n);
-
-
-
-    zapolnenie_massiva(gosudarstvo, n,0);
-
+    int n = 2;
     char name[20];
-
-    fgets(name, sizeof(name), stdin);
-    char* pos = strchr(name, '\n');
-    if (pos) *pos = '\0';
-    int idelement = poiskelementa(gosudarstvo, n, name);
-    printf("%d\n",idelement);
-
-
-    int variant_redacting ;
-    scanf("%d",&variant_redacting);
-    redacting(gosudarstvo,variant_redacting);
-    sorting(gosudarstvo, n);
-    n = add_element(&gosudarstvo , &n, gosudarstvo[0] );
-
-    n = delete_element(&gosudarstvo, &n ,n);
-    n = add_elementik(&gosudarstvo, &n, 1 , gosudarstvo[0]);
-
-    vivod_v_console( gosudarstvo,n);
-    zapis_w_fail(gosudarstvo,n);
-
-
-    gosudarstvo = chtenie_iz_faila();
-    vivod_v_console( gosudarstvo ,n);
-
-    free(gosudarstvo);
-    gosudarstvo = NULL;
-
-
+    user_data data = create_array(n);
+    zapolnenie_massiva(data,0,data.n);
+    scanf("%s",name);
+    poiskelementa(data,name);
+    sorting(data);
+    redacting(data,1);
+    add_element(data,2);
+    delete_element(data,0);
+    add_elementik(data,3);
+    zapis_w_fail(data);
+    chtenie_iz_faila(data);
+    vivod_v_console(data);
     return 0;
 }

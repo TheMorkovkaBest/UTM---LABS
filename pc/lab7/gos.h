@@ -1,6 +1,3 @@
-//
-// Created by Vlad Fridman on 03.12.2025.
-//
 
 #ifndef LAB7_GOS_H
 #define LAB7_GOS_H
@@ -13,26 +10,31 @@ typedef struct {
     unsigned long int vvp;
 }gos;
 
-gos* create_array(int n);
+typedef struct {
+    gos* data;
+    int n, capacity;
+}user_data;
 
-void zapolnenie_massiva(gos* gosudarstvo,int n,int m);
+user_data create_array(int n);
 
-int poiskelementa(gos* gosudarstvo, int n, char name[20]);
+void zapolnenie_massiva(user_data gosudarstvo,int start_index , int stop_index);
 
-void sorting(gos* gosudarstvo, int n);
+void poiskelementa(user_data gosudarstvo, char name[20]);
 
-void redacting(gos* gosudarstvo,int i);
+void sorting(user_data gosudarstvo);
 
-int add_element(gos** gosudarstvo, int *size, gos new_element);
+void redacting(user_data gosudarstvo,int id);
 
-int delete_element(gos** gosudarstvo, int *size, int id);
+void add_element(user_data gosudarstvo , int quantity);
 
-int add_elementik(gos** gosudarstvo, int *size, int id, gos new_element);
+void delete_element(user_data gosudarstvo, int id);
 
-void zapis_w_fail(gos* gosudarstvo, int size);
+void add_elementik(user_data gosudarstvo, int position_id);
 
-gos* chtenie_iz_faila();
+void zapis_w_fail(user_data gosudarstvo);
 
-void vivod_v_console(gos* gosudarstvo,int n);
+void chtenie_iz_faila(user_data gosudarstvo);
+
+void vivod_v_console(user_data gosudarstvo);
 
 #endif
